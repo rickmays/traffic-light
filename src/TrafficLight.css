@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.traffic-light {
+  border: 1px solid black;
+  width: 125px;
+  height: 200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.red-light-on {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: red;
+}
+
+.yellow-light-on {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: yellow;
+}
+
+.green-light-on {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: green;
+}
+
+.red-light-off {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.yellow-light-off {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.green-light-off {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.button {
+  width: 125px;
+  height: 50px;
+  border-radius: 15px;
+  align-self: center;
+}

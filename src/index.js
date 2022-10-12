@@ -1,17 +1,80 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { legacy_createStore as createStore } from "redux";
+import { Provider } from "react-redux";
+import TrafficLight from "./TrafficLight";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+export const RED = "RED";
+export const YELLOW = "YELLOW";
+export const GREEN = "GREEN";
+
+export function setRed() {
+  return { type: RED };
+}
+
+export function setYellow() {
+  return { type: YELLOW };
+}
+
+export function setGreen() {
+  return { type: GREEN };
+}
+
+const initialState = {
+  red: true,
+  yellow: false,
+  green: false,
+};
+
+function reducer(state = initialState, action) {
+  console.log("reducer", action);
+  switch (action.type) {
+    case RED:
+      return {
+        ...state,
+        red: true,
+        yellow: false,
+        green: false,
+      };
+    case YELLOW:
+      return {
+        ...state,
+        red: false,
+        yellow: true,
+        green: false,
+      };
+    case GREEN:
+      return {
+        ...state,
+        red: false,
+        yellow: false,
+        green: true,
+      };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const App = () => (
+  <Provider store={store}>
+    <TrafficLight />
+  </Provider>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+
+// console.log("initial", store.getState());
+// store.dispatch({ type: YELLOW });
+// console.log(store.getState());
+// store.dispatch({ type: GREEN });
+// console.log(store.getState());
