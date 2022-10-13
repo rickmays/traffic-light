@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
@@ -9,16 +9,15 @@ export const YELLOW = "YELLOW";
 export const GREEN = "GREEN";
 
 export function setRed() {
-  return { type: RED };
-}
+  return {type: RED, }};
 
 export function setYellow() {
   return { type: YELLOW };
 }
 
 export function setGreen() {
-  return { type: GREEN };
-}
+  return { type: GREEN }
+};
 
 const initialState = {
   red: true,
@@ -26,7 +25,7 @@ const initialState = {
   green: false,
 };
 
-function reducer(state = initialState, action) {
+const reducer = (state = initialState, action) => {
   console.log("reducer", action);
   switch (action.type) {
     case RED:
@@ -53,7 +52,7 @@ function reducer(state = initialState, action) {
     default:
       return state;
   }
-}
+};
 
 const store = createStore(
   reducer,
@@ -72,9 +71,3 @@ root.render(
     <App />
   </StrictMode>
 );
-
-// console.log("initial", store.getState());
-// store.dispatch({ type: YELLOW });
-// console.log(store.getState());
-// store.dispatch({ type: GREEN });
-// console.log(store.getState());
